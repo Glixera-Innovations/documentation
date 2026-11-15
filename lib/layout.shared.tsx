@@ -5,7 +5,12 @@ export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
       // JSX supported
-      title: appName,
+      title: (
+        <span className='flex items-center gap-2'>
+          <img src="/icon.svg" className='size-6'></img>
+          <span>{appName}</span>
+        </span>
+      ),
     },
     githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
   };
