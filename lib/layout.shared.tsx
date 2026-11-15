@@ -1,5 +1,6 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { appName, gitConfig } from './shared';
+import { Users,Globe } from 'lucide-react';
 
 export function baseOptions(): BaseLayoutProps {
   return {
@@ -13,5 +14,13 @@ export function baseOptions(): BaseLayoutProps {
       ),
     },
     githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
+    links: [
+      {
+        text: "Discord",
+        url: "https://discord.glixera.eu",
+        icon: <Users className="size-4" />,
+        type: "icon",
+      },
+    ]
   };
 }
