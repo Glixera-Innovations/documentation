@@ -4,7 +4,7 @@ WORKDIR /app
 # Install dependencies (including postinstall fumadocs-mdx generation)
 FROM base AS deps
 COPY package.json bun.lock ./
-COPY source.config.ts ./
+RUN bunx fumadocs-mdx
 RUN bun install --frozen-lockfile
 
 # Build the Next.js application
