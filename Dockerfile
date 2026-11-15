@@ -1,18 +1,18 @@
 FROM oven/bun:1 AS base
 WORKDIR /app
 
-# Install dependencies (including postinstall fumadocs-mdx generation)
+# Install dependencies (skip postinstall until source files are copied)
 FROM base AS deps
 COPY package.json bun.lock ./
-RUN bunx fumadocs-mdx
-RUN bun install --frozen-lockfile
+RUN bun install --frozen-lockfile --ignore-scripts
 
-# Build the Next.js application
+# Copy source files, generate Fumadocs MDX, and build
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+RUN bunx fumadocs-mdx
 RUN bun run build
 
 # Production runner
